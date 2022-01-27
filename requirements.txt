@@ -1,0 +1,5 @@
+requests
+shapely
+PyQt5==5.15.4
+pyqt5-tools
+pyinstaller

@@ -25,9 +25,6 @@ class QuadNode:
     def height_meter(self):
         return self.height() * 111111.111111
 
-    def to_amap_polygon(self):
-        return '%f,%f|%f,%f' % (self.minx, self.miny, self.maxx, self.maxy)
-
     def split(self):
         midlon = self.minx + (self.maxx - self.minx) / 2
         midlat = self.miny + (self.maxy - self.miny) / 2
@@ -38,3 +35,14 @@ class QuadNode:
             QuadNode(midlon, self.miny, self.maxx, midlat)
         ]
         return nodes
+
+    def to_amap_polygon(self):
+        return '%f,%f|%f,%f' % (self.minx, self.miny, self.maxx, self.maxy)
+
+    @staticmethod
+    def from_amap_polygon(polygon_str: str):
+        pts = polygon_str.split('|')
+        min_pt = pts[0].split(',')
+        max_pt = pts[1].split(',')
+        minx, miny, maxx, maxy = float(min_pt[0]), float(min_pt[1]), float(max_pt[0]), float(max_pt[1])
+        return QuadNode(minx, miny, maxx, maxy)

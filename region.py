@@ -19,7 +19,7 @@ class Region:
 
 
 def load_provinces():
-    with open('data/' + CHINA_MAP_GEOJSON, 'r', encoding='UTF-8') as f:
+    with open('geojson/' + CHINA_MAP_GEOJSON, 'r', encoding='UTF-8') as f:
         root = json.load(f)
     regions = []
     for feature in root['features']:
@@ -34,7 +34,7 @@ def load_provinces():
 
 def load_citys(province_code):
     regions = [Region(name='全部')]
-    file_path = 'data/%s.geojson' % province_code
+    file_path = 'geojson/%s.geojson' % province_code
     if not os.path.exists(file_path):
         return regions
     with open(file_path, 'r', encoding='UTF-8') as f:
@@ -51,7 +51,7 @@ def load_citys(province_code):
 
 def load_districts(city_code):
     regions = [Region(name='全部')]
-    file_path = 'data/%s.geojson' % city_code
+    file_path = 'geojson/%s.geojson' % city_code
     if os.path.exists(file_path):
         return regions
     with open(file_path, 'r', encoding='UTF-8') as f:

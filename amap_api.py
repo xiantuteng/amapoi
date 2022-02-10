@@ -84,8 +84,8 @@ def place_polygon(key, polygon, page_num=DEFAULT_PAGE_NUM, page_size=DEFAULT_PAG
 def place_polygon_all(key, polygon):
     """
     获取区域内所有的POI数据
-    :param key:
-    :param polygon:
+    :param key: 高德APK Key
+    :param polygon: 高德地图多边形坐标对，格式如： x1,y1|x2,y2|...
     :return:
     """
     poi_list = []

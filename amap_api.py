@@ -70,7 +70,10 @@ def place_polygon(key, polygon, page_num=DEFAULT_PAGE_NUM, page_size=DEFAULT_PAG
     url = 'https://restapi.amap.com/v5/place/polygon?key=%s&polygon=%s&page_size=%d&page_num=%d' \
           '&types=10000|20000|30000|40000|50000|60000|70000|80000|90000|100000|110000|120000|130000|140000|150000|160000|170000|180000|190000|200000|220000|970000|990000'
     url = url % (key, polygon, page_size, page_num)
-    resp = requests.get(url)
+    resp = requests.get(url, proxies={
+        "http": None,
+        "https": None,
+    })
     if resp.status_code != 200:
         raise Exception('服务器错误：%d %s' % (resp.status_code, url))
     resp_json = json.loads(resp.text)
